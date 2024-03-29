@@ -7,5 +7,5 @@
 - Commands are sent to your Fire TV to disable Amazon bloatware and optimize performance.
   
 ### Running on macOS
-1. Make the script executable `chmod +x Debloat-Fire-TV.sh`
+1. Make the script executable `chmod +x Debloat-Fire-TV`
 2. Run it with `./Debloat-Fire-TV`
