@@ -6,6 +6,6 @@
 - Connects to your Fire TV via the ADB feature in Android Platform Tools.
 - Commands are sent to your Fire TV to disable Amazon bloatware and optimize performance.
   
-### Running on macOS
+## Running on macOS
 1. Make the script executable `chmod +x DebloatFireTV.sh`
 2. Run it with `./DebloatFireTV.sh`
