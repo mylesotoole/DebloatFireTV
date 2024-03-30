@@ -1,6 +1,6 @@
 ### Running on macOS
-1. Make the script executable `chmod +x DebloatFireTV.sh`.
-2. Run it with `./DebloatFireTV.sh`.
+1. Make the script executable `chmod +x DebloatFireTV`.
+2. Run it with `./DebloatFireTV`.
 
 <hr>
 
