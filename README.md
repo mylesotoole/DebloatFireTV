@@ -12,5 +12,5 @@
 
 ### What it uses:
 - This script utilizes Homebrew and Android Platform Tools for macOS.
-  - These dependecies will automatically be checked. If they are not present, this script will install them with your permission.
-- ADB debugging is a devolper setting on your Fire TV and needs to be enabled. 
+  - These dependecies will automatically be checked for. If they are not present, this script will install them with your permission.
+- ADB debugging is a devolper setting on your Fire TV which needs to be enabled. 
