@@ -76,7 +76,7 @@ Debloat() {
 
 Main() {
   # CHECK IF HOMEBREW IS INSTALLED, IF NOT ASK TO INSTALL IT
-  which -s brew
+  which -s /opt/homebrew/bin/brew
   if [[ $? != 0 ]]; then
     clear
     printf "[Error] Homebrew is not installed, please continue with its installation and then rerun the script:\n\n"
@@ -84,7 +84,7 @@ Main() {
     Main
   else
     # CHECK IF ANDROID PLATFORM TOOLS IS INSTALLED, IF NOT INSTALL IT
-    if brew list | grep "android-platform-tools" >/dev/null 2>&1; then
+    if /opt/homebrew/bin/brew list | grep "android-platform-tools" >/dev/null 2>&1; then
       # CLEAR CURRENT CONNECTIONS
       adb disconnect
       clear
@@ -115,7 +115,7 @@ Main() {
       fi
     else
       # INSTALL ANDROID PLATFORM TOOLS, AND RESTART THE SCRIPT
-      brew install --cask android-platform-tools
+      /opt/homebrew/bin/brew install --cask android-platform-tools
       Main
     fi
   fi
