@@ -69,6 +69,7 @@ Debloat() {
         com.amazon.hedwig
         com.amazon.wifilocker
         com.amazon.franktvinput
+        com.amazon.alexa.externalmediaplayer.fireos
     )
     
     # Loop through the array and disable each package
