@@ -66,6 +66,7 @@ Debloat() {
         com.amazon.logan
         com.android.documentsui
         com.amazon.tahoe
+        com.amazon.hedwig
     )
     
     # Loop through the array and disable each package
