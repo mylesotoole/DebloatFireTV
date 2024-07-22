@@ -65,6 +65,7 @@ Debloat() {
         com.amazon.awvflingreceiver
         com.amazon.logan
         com.android.documentsui
+        com.amazon.tahoe
     )
     
     # Loop through the array and disable each package
