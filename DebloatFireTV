@@ -68,6 +68,7 @@ Debloat() {
         com.amazon.tahoe
         com.amazon.hedwig
         com.amazon.wifilocker
+        com.amazon.franktvinput
     )
     
     # Loop through the array and disable each package
