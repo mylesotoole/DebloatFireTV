@@ -72,6 +72,7 @@ Debloat() {
         com.amazon.alexa.externalmediaplayer.fireos
         com.amazon.tv.alexaalerts
         com.amazon.tv.alexanotifications
+        com.amazon.katoch
     )
     
     # Loop through the array and disable each package
