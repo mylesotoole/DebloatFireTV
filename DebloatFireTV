@@ -10,61 +10,68 @@ Debloat() {
     printf "[2] Disabling the following packages:\n\n"
 
     # DISABLE PACKAGES
-    adb shell pm disable-user com.amazon.recess
-    adb shell pm disable-user com.amazon.ssmsys
-    adb shell pm disable-user com.amazon.whisperplay.contracts
-    adb shell pm disable-user com.ivona.orchestrator
-    adb shell pm disable-user com.amazon.dpcclient
-    adb shell pm disable-user com.amazon.ceviche
-    adb shell pm disable-user com.amazon.alta.h2clientservice
-    adb shell pm disable-user com.amazon.ftv.screensaver
-    adb shell pm disable-user com.amazon.ods.kindleconnect
-    adb shell pm disable-user com.android.providers.downloads.ui
-    adb shell pm disable-user com.amazon.sharingservice.android.client.proxy
-    adb shell pm disable-user com.amazon.android.marketplace
-    adb shell pm disable-user com.amazon.tifobserver
-    adb shell pm disable-user com.amazon.aca
-    adb shell pm disable-user com.amazon.ale
-    adb shell pm disable-user com.amazon.dcp
-    adb shell pm disable-user com.amazon.ssm
-    adb shell pm disable-user com.amazon.tahoe
-    adb shell pm disable-user com.amazon.naatyam
-    adb shell pm disable-user com.amazon.tv.fw.metrics
-    adb shell pm disable-user com.amazon.device.sale.service
-    adb shell pm disable-user com.amazon.cardinal
-    adb shell pm disable-user com.amazon.tv.forcedotaupdater.v2
-    adb shell pm disable-user amazon.jackson19
-    adb shell pm disable-user com.android.managedprovisioning
-    adb shell pm disable-user com.amazon.imdb.tv.android.app
-    adb shell pm disable-user com.amazon.tmm.tutorial
-    adb shell pm disable-user com.amazon.dcp.contracts.framework.library
-    adb shell pm disable-user com.amazon.tv.support
-    adb shell pm disable-user com.amazon.sync.provider.ipc
-    adb shell pm disable-user com.amazon.tv.legal.notices
-    adb shell pm disable-user android.amazon.perm
-    adb shell pm disable-user com.amazon.kso.blackbird
-    adb shell pm disable-user com.amazon.providers.contentsupport
-    adb shell pm disable-user com.amazon.whisperjoin.middleware.np
-    adb shell pm disable-user com.amazon.application.compatibility.enforcer
-    adb shell pm disable-user com.amazon.whisperplay.service.install
-    adb shell pm disable-user com.ivona.tts.oem
-    adb shell pm disable-user com.amazon.shoptv.client
-    adb shell pm disable-user com.amazon.communication.discovery
-    adb shell pm disable-user com.amazon.tv.releasenotes
-    adb shell pm disable-user com.amazon.hedwig
-    adb shell pm disable-user com.amazon.application.compatibility.enforcer.sdk.library
-    adb shell pm disable-user com.android.bluetoothmidiservice
-
-    # DISABLE ANIMATIONS
-    adb shell settings put global window_animation_scale 0.0
-    adb shell settings put global transition_animation_scale 0.0
-
-    # NOTIFY COMPLETION
-    sleep 2
-    clear
-    printf "\n[3] Debloat Completed\n\n"
-    sleep 2
-    clear
+    packages=(
+        com.amazon.recess
+        com.amazon.ssmsys
+        com.amazon.whisperplay.contracts
+        com.ivona.orchestrator
+        com.amazon.dpcclient
+        com.amazon.ceviche
+        com.amazon.alta.h2clientservice
+        com.amazon.ftv.screensaver
+        com.amazon.ods.kindleconnect
+        com.android.providers.downloads.ui
+        com.amazon.sharingservice.android.client.proxy
+        com.amazon.android.marketplace
+        com.amazon.tifobserver
+        com.amazon.aca
+        com.amazon.ale
+        com.amazon.dcp
+        com.amazon.ssm
+        com.amazon.tahoe
+        com.amazon.naatyam
+        com.amazon.tv.fw.metrics
+        com.amazon.device.sale.service
+        com.amazon.cardinal
+        com.amazon.tv.forcedotaupdater.v2
+        amazon.jackson19
+        com.android.managedprovisioning
+        com.amazon.imdb.tv.android.app
+        com.amazon.tmm.tutorial
+        com.amazon.dcp.contracts.framework.library
+        com.amazon.tv.support
+        com.amazon.sync.provider.ipc
+        com.amazon.tv.legal.notices
+        android.amazon.perm
+        com.amazon.kso.blackbird
+        com.amazon.providers.contentsupport
+        com.amazon.whisperjoin.middleware.np
+        com.amazon.application.compatibility.enforcer
+        com.amazon.whisperplay.service.install
+        com.ivona.tts.oem
+        com.amazon.shoptv.client
+        com.amazon.communication.discovery
+        com.amazon.tv.releasenotes
+        com.amazon.hedwig
+        com.amazon.application.compatibility.enforcer.sdk.library
+        com.android.bluetoothmidiservice
+        com.android.dreams.basic
+        com.android.wallpaperbackup
+        com.amazon.bueller.photos
+        com.amazon.vizzini
+        com.svox.pico
+        com.amazon.bueller.music
+        com.amazon.connectivitydiag
+        com.amazon.awvflingreceiver
+        com.amazon.logan
+        com.android.documentsui
+    )
+    
+    # Loop through the array and disable each package
+    for package in "${packages[@]}"
+    do
+        adb shell pm disable-user "$package"
+    done
 
   else
     # IT FAILED, TELL REMEDY AND PROMPT RETRY
