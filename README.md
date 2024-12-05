@@ -1,16 +1,19 @@
-### Running on macOS
-1. Make the script executable `chmod +x FireTheTV`.
-2. Run it with `./FireTheTV`.
+## How It Works:
 
-<hr>
+- Your Mac connects to your Fire TV via the ADB (Android Debug Bridge) feature using [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools).
+- Commands are sent to your Fire TV from the script to disable Amazon bloatware and optimize performance.
 
-### How it works:
-- Connects to your Fire TV via the ADB feature in Android Platform Tools.
-- Commands are sent to your Fire TV to disable Amazon bloatware and optimize performance.
+## What It Uses:
 
-<hr>
+- This script utilizes [Homebrew](https://brew.sh/) and [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) for macOS.
+  - Dependencies are checked automatically. If they are not present, this script will install them.
+    - **Permission** is required to install Homebrew.
+- ADB debugging must be enabled on your Fire TV, which is a developer setting.
 
-### What it uses:
-- This script utilizes Homebrew and Android Platform Tools for macOS.
-  - These dependecies will automatically be checked for. If they are not present, this script will install them with your permission.
-- ADB debugging is a developer setting on your Fire TV which needs to be enabled. 
+## How to Run It:
+
+1. Open Terminal and navigate to the script's directory.
+2. Run the script by typing:
+   ```bash
+   sh FireTheTV.sh
+   ```
