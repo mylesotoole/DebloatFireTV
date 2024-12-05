@@ -1,15 +1,15 @@
 #!/bin/sh
 Debloat() {
 
-  # CHECK IF IT CAN BE REACHED BY ABD
+  # Check if Fire TV is reachable via ADB
   clear
   if adb get-state 1>/dev/null 2>&1; then
 
-    # NOTIFY CHANGES
+    # Notify user about packages being disabled
     clear
     printf "[2] Disabling the following packages:\n\n"
 
-    # DISABLE PACKAGES
+    # List of packages to be disabled
     packages=(
         com.amazon.recess
         com.amazon.ssmsys
@@ -75,58 +75,59 @@ Debloat() {
         com.amazon.katoch
     )
     
-    # Loop through the array and disable each package
+    # Loop through the package list and disable each one
     for package in "${packages[@]}"
     do
         adb shell pm disable-user "$package"
     done
 
-    # DISABLE ANIMATIONS
+    # Disable window and transition animations
     adb shell settings put global window_animation_scale 0.0
     adb shell settings put global transition_animation_scale 0.0
 
+    # Notify user about packages being disabled
+    printf "\n[3] FireTheTV has completed.\n\n"
+
   else
-    # IT FAILED, TELL REMEDY AND PROMPT RETRY
+    # Fire TV is not reachable, prompt the user for a retry
     printf "[Error] Fire TV is not reachable, please confirm:\n\n"
     printf "  - ADB debugging is enabled on the Fire TV\n"
-    printf "  - This is the IP address of the Fire TV\n\n"
+    printf "  - This is the correct IP address of the Fire TV\n\n"
     read -p "Press any key to try again: " -n 1 -s key
     Main
   fi
 }
 
 Main() {
-  # CHECK IF HOMEBREW IS INSTALLED, IF NOT ASK TO INSTALL IT
+  # Check if Homebrew is installed, if not prompt user to install it
   which -s /opt/homebrew/bin/brew
   if [[ $? != 0 ]]; then
     clear
-    printf "[Error] Homebrew is not installed, please continue with its installation and then rerun the script:\n\n"
+    printf "[Error] Homebrew is not installed, please continue with its installation:\n\n"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     Main
   else
-    # CHECK IF ANDROID PLATFORM TOOLS IS INSTALLED, IF NOT INSTALL IT
+    # Check if Android platform tools are installed, if not install them
     if /opt/homebrew/bin/brew list | grep "android-platform-tools" >/dev/null 2>&1; then
-      # CLEAR CURRENT CONNECTIONS
+      # Disconnect any existing ADB connections
       adb disconnect
       clear
 
-      # ASK FOR IP
-
+      # Prompt user for Fire TV IP address
       printf "╔═════════════════════════╗\n"
       printf "║     Debloat Fire TV     ║\n"
       printf "╚═════════════════════════╝\n\n"
 
       printf "[1] Enter your Fire TV's IP Address: "
-      read ip1
+      read tv
 
-      # CHECK IF HOST IS ONLINE, IF SO TRY AND CONNECT
-      if
-        ping -c 1 "$ip1" >/dev/null 2>&1
+      # Check if the provided IP address is online, if so, try to connect
+      if ping -c 1 "$tv" >/dev/null 2>&1
       then
-        adb connect $ip1:5555
+        adb connect $tv:5555
         Debloat
       else
-        # IT FAILED, TELL REMEDY AND PROMPT RETRY
+        # Error: IP address is unreachable, prompt user for retry
         clear
         printf "[Error] This IP address is not reachable, please confirm that:\n\n"
         printf "  - Both devices are on the same network\n"
@@ -135,7 +136,7 @@ Main() {
         Main
       fi
     else
-      # INSTALL ANDROID PLATFORM TOOLS, AND RESTART THE SCRIPT
+      # Install Android platform tools and restart the script
       /opt/homebrew/bin/brew install --cask android-platform-tools
       Main
     fi
